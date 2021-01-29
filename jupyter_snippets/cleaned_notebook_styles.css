@@ -1,0 +1,61 @@
+#notebook {
+    padding-top: 0px !important;
+    line-height: inherit !important;
+}
+
+.prompt {
+    display: none;
+}
+
+div.output {
+    overflow-x: hidden !important;
+}
+
+div.output_area {
+    padding-bottom: 10pt;
+}
+div.output_stderr {
+    display: none;
+}
+
+div.output_subarea {
+    max-width: 100% !important;
+    padding: 0px !important;
+    overflow-x: hidden !important;
+}
+
+div.cell {
+    padding: 0px !important;
+    border: 0px !important;
+}
+
+.jp-mod-noOutputs {
+    display: none;
+}
+
+
+div.input {
+    display: none !important;
+}
+
+div.jp-Cell-inputWrapper {
+    display: none !important;
+}
+
+@media screen {
+    .dataframe {
+        font-size: 14px;
+    }
+}
+
+@media print {
+    table {
+        font-size: 10px !important;
+        
+    }
+    
+    .rendered_html td, .rendered_html th {
+        padding: 1px !important;
+    }
+}
+
