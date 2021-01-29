@@ -35,6 +35,7 @@ setup(
         "matplotlib",
         "seaborn",
         "ipython",
-        "notebook"
+        "notebook",
+        'beautifulsoup4'
     ],
 )
