@@ -5,7 +5,9 @@ Created on Dec 01 2016
 @author: jclarke
 """
 
-def init_notebook(default_figure_size = (6, 4), full_width = True, default_figure_format = 'svg'):
+from typing import Union
+
+def init_notebook(default_figure_size = (6, 4), full_width: Union[float, bool] = True, default_figure_format = 'svg'):
     #run "magic" commands that you'd otherwise need to put into the cell as e.g. "%matplotlib inline"
     _ipy = get_ipython()
     _ipy.magic("matplotlib inline")
@@ -41,6 +43,14 @@ def init_notebook(default_figure_size = (6, 4), full_width = True, default_figur
 
     #notebook layout modifications...
     from IPython.core.display import HTML
+    if full_width:
+        if full_width == True:
+            nb_width = 1.0
+        else:
+            nb_width = full_width
+        nb_width_css = ".container { width:%f%% !important; }" % (full_width*100)
+    else:
+        nb_width_css = ""
     return HTML("""
     <style>
     %s
@@ -66,7 +76,7 @@ def init_notebook(default_figure_size = (6, 4), full_width = True, default_figur
         width: 60%% !important
     }
     </style>
-    """ % (".container { width:100% !important; }" if full_width else ""))
+    """ % nb_width_css)
 
 def df_viewer(df, force_window_width = False, height = 400, *args, **kwargs):
     #this form of table is best for browsing very large tables
