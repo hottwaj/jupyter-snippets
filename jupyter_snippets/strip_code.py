@@ -10,10 +10,8 @@ import os
 import sys
 
 def strip_code(bs_tree):
-    removeds = [n.extract() for n in bs_tree.find_all(class_ = 'input')]
-    removeds = [n.extract() for n in bs_tree.find_all(class_ = 'output_prompt')]
-    removeds = [n.extract() for n in bs_tree.find_all(class_ = 'jp-Cell-inputWrapper')]
-    removeds = [n.extract() for n in bs_tree.find_all(class_ = 'jp-OutputPrompt')]
+    for css_class in ['input', 'output_prompt', 'jp-Cell-inputWrapper', 'jp-OutputPrompt', 'output_stderr']:
+        removeds = [n.extract() for n in bs_tree.find_all(class_ = css_class)]
 
 if __name__ == '__main__':
     from optparse import OptionParser
