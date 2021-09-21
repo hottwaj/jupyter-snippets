@@ -10,8 +10,16 @@ import os
 import sys
 
 def strip_code(bs_tree):
-    for css_class in ['input', 'output_prompt', 'jp-Cell-inputWrapper', 'jp-OutputPrompt', 'output_stderr']:
+    for css_class in ['input', 'output_prompt', 'jp-InputPrompt', 'jp-InputArea-prompt', 'jp-OutputPrompt', 'output_stderr']:
         removeds = [n.extract() for n in bs_tree.find_all(class_ = css_class)]
+        
+    for n in bs_tree.find_all(class_ = 'jp-Cell-inputWrapper'):
+        for css_class in ['jp-RenderedHTMLCommon', 'jp-RenderedMarkdown', 'jp-MarkdownOutput']:
+            if len(n.find_all(class_ = css_class)):
+                break
+        else:
+            # remove inputWrappers that don't contain HTML/Markdown 
+            n.extract()
 
 if __name__ == '__main__':
     from optparse import OptionParser

@@ -31,10 +31,6 @@ def init_notebook(default_figure_size = (6, 4), full_width: Union[float, bool] =
     import IPython
     IPython.InteractiveShell.cache_size = 5
 
-    #set default PrettyPandas style    
-    from prettypandas import PrettyPandas
-    PrettyPandas.set_percent_formatter('as_percent_with_precision')
-
     #set default seaborn style
     import seaborn
     seaborn.set(style='whitegrid')
