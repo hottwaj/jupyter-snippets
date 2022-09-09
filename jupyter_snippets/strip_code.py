@@ -21,6 +21,9 @@ def strip_code(bs_tree):
             # remove inputWrappers that don't contain HTML/Markdown 
             n.extract()
 
+def strip_anchor_links(bs_tree):
+    removeds = [n.extract() for n in bs_tree.find_all(class_ = 'anchor-link')]
+
 if __name__ == '__main__':
     from optparse import OptionParser
 
@@ -35,6 +38,11 @@ Strip input code cells and input prompts from a Jupyter HTML file so that it's s
     parser.add_option('-i', '--insert_css', default=[],
                          help='Insert custom CSS into the file.',
                          dest='insert_css', action='append')
+
+
+    parser.add_option('--remove-anchor-links', action="store_true",
+                         help='Remove anchor links that appear next to titles with character ¶',
+                         dest='remove_anchor_links')
 
     options, args = parser.parse_args()
 
@@ -59,6 +67,9 @@ Strip input code cells and input prompts from a Jupyter HTML file so that it's s
         doctree = BeautifulSoup(codecs.open(filename, encoding='utf-8'), 'lxml')
 
         strip_code(doctree)
+
+        if options.remove_anchor_links:
+            strip_anchor_links(doctree)
 
         if len(options.insert_css):
             for cssfile in options.insert_css:
