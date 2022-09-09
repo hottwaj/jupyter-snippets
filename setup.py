@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md')) as f:
 setup(
     name='jupyter-snippets',
 
-    version='0.5',
+    version='0.6',
     
     python_requires='>3.7',
 
